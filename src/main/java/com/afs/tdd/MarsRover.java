@@ -1,21 +1,47 @@
 package com.afs.tdd;
 
-public class MarsRover {
-    public MarsRover(int i, int i1, String n) {
-    }
 
-    public void executeCommands(String m) {
+import java.util.Arrays;
+
+public class MarsRover {
+    private int locationX;
+    private int locationY;
+    private String heading;
+
+    public MarsRover(int locationX, int LocationY, String heading) {
+        this.locationX = locationX;
+        this.locationY = LocationY;
+        this.heading = heading;
     }
 
     public int getLocationX() {
-        return 0;
+        return locationX;
     }
 
     public int getLocationY() {
-        return 0;
+        return locationY;
     }
 
     public String getHeading() {
-        return null;
+        return heading;
     }
+
+    public void executeCommands(String commands) {
+        Arrays.asList(commands.split(""))
+                .forEach(command -> this.executeCommand(command));
+    }
+
+    public void executeCommand(String command){
+        if (command.equals("M")){
+            move();
+        }
+    }
+
+    private void move() {
+        if (heading.equals("N")){
+            locationY +=1;
+        }
+    }
+
+
 }
