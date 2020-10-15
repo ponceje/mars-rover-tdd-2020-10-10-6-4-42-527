@@ -8,6 +8,7 @@ public class MarsRover {
     private int locationY;
     private String heading;
 
+
     public MarsRover(int locationX, int LocationY, String heading) {
         this.locationX = locationX;
         this.locationY = LocationY;
@@ -21,25 +22,31 @@ public class MarsRover {
     public int getLocationY() {
         return locationY;
     }
-
     public String getHeading() {
         return heading;
     }
 
     public void executeCommands(String commands) {
-        Arrays.asList(commands.split(""))
-                .forEach(command -> this.executeCommand(command));
+        Arrays.asList(commands.split("")).forEach(command -> {
+            try {
+                executeCommand(command);
+            } catch (CommandNotDefinedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    public void executeCommand(String command){
+    public void executeCommand(String command) throws CommandNotDefinedException {
         if (command.equals("M")){
             move();
         }
-        if (command.equals("L")){
+        else if (command.equals("L")){
             turnLeft();
         }
-        if (command.equals("R")){
+        else if (command.equals("R")){
             turnRight();
+        }else{
+            throw new CommandNotDefinedException("er");
         }
     }
 
