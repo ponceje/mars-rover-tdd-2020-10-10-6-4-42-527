@@ -149,5 +149,16 @@ class DemoTest {
         assertEquals(1, marsRover.getLocationY());
         assertEquals("N", marsRover.getHeading());
     }
+    @Test
+    void should_return_CommandNotDefinedException_when_execute_given_x_0_y_0_heading_N_and_command_F() {
+        //given
+        MarsRover marsRover = new MarsRover(0,0,"N");
+        //when
+
+        //then
+        assertThrows(CommandNotDefinedException.class, () -> {
+            marsRover.executeCommands("F");
+        });
+    }
 
 }
