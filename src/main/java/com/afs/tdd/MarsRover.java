@@ -44,46 +44,53 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) throws CommandNotDefinedException {
-        if (command.equals(MOVE)){
-            move();
-        }
-        else if (command.equals(TURN_LEFT)){
-            turnLeft();
-        }
-        else if (command.equals(TURN_RIGHT)){
-            turnRight();
-        }else{
-            throw new CommandNotDefinedException(ERROR);
+        switch (command) {
+            case MOVE:
+                move();
+                break;
+            case TURN_LEFT:
+                turnLeft();
+                break;
+            case TURN_RIGHT:
+                turnRight();
+                break;
+            default:
+                throw new CommandNotDefinedException(ERROR);
         }
     }
 
     private void turnRight() {
-        if(heading.equals(NORTH)){
-            heading= EAST;
-        }
-        else if(heading.equals(SOUTH)){
-            heading= WEST;
-        }
-        else if(heading.equals(EAST)){
-            heading= SOUTH;
-        }
-        else if(heading.equals(WEST)){
-            heading= NORTH;
+        switch (heading) {
+            case NORTH:
+                setHeading(EAST);
+                break;
+            case SOUTH:
+                setHeading(WEST);
+                break;
+            case EAST:
+                setHeading(SOUTH);
+                break;
+            case WEST:
+                setHeading(NORTH);
+                break;
         }
     }
 
+
     private void turnLeft() {
-        if(heading.equals(NORTH)){
-            heading= WEST;
-        }
-        else if(heading.equals(SOUTH)){
-            heading= EAST;
-        }
-        else if(heading.equals(EAST)){
-            heading= NORTH;
-        }
-        else if(heading.equals(WEST)){
-            heading= SOUTH;
+        switch (heading) {
+            case NORTH:
+                setHeading(WEST);
+                break;
+            case SOUTH:
+                setHeading(EAST);
+                break;
+            case EAST:
+                setHeading(NORTH);
+                break;
+            case WEST:
+                setHeading(SOUTH);
+                break;
         }
     }
 
@@ -100,6 +107,10 @@ public class MarsRover {
         if (heading.equals(WEST)){
             moveLeft();
         }
+    }
+
+    private void setHeading(String direction) {
+        heading = direction;
     }
 
     private void moveUp() {
